@@ -1,8 +1,10 @@
 // 方案1-反代域名-简版(可以page)
+//直接将请求的主机名设置为 api.cbcd.com，并强制协议为 https。
+//没有对路径进行任何检查，所有请求都会被反向代理到 api.cbcd.com。
 export default {
   async fetch(request, env) {
     let url = new URL(request.url);
-    url.hostname = 'api.cbcd.com'; // 设置需要反代的地址
+    url.hostname = "uptime-yzong-efe57cea.koyeb.app"; // 设置需要反代的地址
     url.protocol = "https";
     return fetch(new Request(url, request));
   },
@@ -10,8 +12,8 @@ export default {
 
 //----------------------------------------------------------------------------
 // 方案2-反代目标域名下某个路径(可以Page)
-export default {
-  async fetch(request, env) {
+export 默认 {
+  async fetch(request， env) {
     let url = new URL(request.url);
     // 目标网址的域名、协议和路径
     url.hostname = 'cdn.cloudflare.steamstatic.com';
@@ -48,7 +50,7 @@ export default {
   async fetch(request, env) {
     let url = new URL(request.url);    
     // 使用外部环境变量，如果未定义，则使用默认值
-    url.hostname = env.HOSTNAME || 'cdn.cloudflare.steamstatic.com';
+    url.hostname = env.HOSTNAME || 'uptime-yzong-efe57cea.koyeb.app';
     url.protocol = env.PROTOCOL || 'https';    
     // 获取当前请求的 pathname，并用它来设置目标路径
     let requestPathname = new URL(request.url).pathname;
